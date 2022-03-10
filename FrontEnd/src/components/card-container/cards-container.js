@@ -1,22 +1,17 @@
 import ActionAreaCard from "./card/card";
 import React from "react";
-import styled from "styled-components";
+import ScrollContainer from "react-indiana-drag-scroll";
 
-const Container = styled.div`
-  height: 100%;
-  background-color: rgba(255, 93, 0, 0.85);
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-`;
+const CardsContainer = (props) => {
+  //Temp fix maybe?
+  if (!Object.keys(props)[0]) return null;
 
-const CardsContainer = () => {
   return (
-    <Container>
-      <ActionAreaCard></ActionAreaCard>
-      <ActionAreaCard></ActionAreaCard>
-    </Container>
+    <ScrollContainer id={"scroll"} horizontal={false}>
+      {Object.values(props)[0].map((item) => {
+        return <ActionAreaCard item={item}></ActionAreaCard>;
+      })}
+    </ScrollContainer>
   );
 };
 
