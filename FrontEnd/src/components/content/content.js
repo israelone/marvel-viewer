@@ -70,7 +70,6 @@ const Content = () => {
       <Container>
         <CardsContainer comics={comics}></CardsContainer>
         <CardsContainer characters={characters}></CardsContainer>
-        <CardsContainer creators={creators}></CardsContainer>
         <CardsContainer events={events}></CardsContainer>
         <CardsContainer series={series}></CardsContainer>
       </Container>
