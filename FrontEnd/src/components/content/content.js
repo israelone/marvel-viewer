@@ -3,6 +3,9 @@ import styled from "styled-components";
 import CardsContainer from "../card-container/cards-container";
 import axios from "axios";
 import { useEffect } from "react";
+import { CircularProgress } from "@mui/material";
+import { CommuteRounded } from "@mui/icons-material";
+
 const Container = styled.div`
   height: 100%;
   width: 100%;
@@ -18,60 +21,64 @@ const Container = styled.div`
 const Content = () => {
   const [comics, setComics] = useState([]);
   const [characters, setCharacters] = useState([]);
-  const [creators, setCreators] = useState([]);
   const [events, setEvents] = useState([]);
   const [series, setSeries] = useState([]);
-  const [stories, setStories] = useState([]);
+  // const [stories, setStories] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/comics`).then((res) => {
-      // console.log(res);
-      setComics([...res.data.data.results]);
+      console.log(res.data.data);
+      setComics([...res.data.data]);
     });
   }, []);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/characters`).then((res) => {
-      console.log(res);
-      setCharacters([...res.data.data.results]);
-    });
-  }, []);
-
-  useEffect(() => {
-    axios.get(`http://localhost:3001/creators`).then((res) => {
-      // console.log(res, creators);
-      setCreators([...res.data.data.results]);
+      console.log(res.data.data);
+      setCharacters([...res.data.data]);
     });
   }, []);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/events`).then((res) => {
-      // console.log(res);
-      setEvents([...res.data.data.results]);
+      console.log(res.data.data);
+      setEvents([...res.data.data]);
     });
   }, []);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/series`).then((res) => {
-      // console.log(res);
-      setSeries([...res.data.data.results]);
+      console.log(res.data.data);
+      setSeries([...res.data.data]);
     });
   }, []);
 
-  useEffect(() => {
-    axios.get(`http://localhost:3001/stories`).then((res) => {
-      // console.log(res);
-      setStories([...res.data.data.results]);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`http://localhost:3001/stories`).then((res) => {
+  //     console.log(res.data.data);
+  //     setStories([...res.data.data]);
+  //   });
+  // }, []);
 
   return (
     <>
       <Container>
-        <CardsContainer comics={comics}></CardsContainer>
-        <CardsContainer characters={characters}></CardsContainer>
-        <CardsContainer events={events}></CardsContainer>
-        <CardsContainer series={series}></CardsContainer>
+        {comics.length === 0 ||
+        series.length === 0 ||
+        events.length === 0 ||
+        characters.length === 0 ? (
+          <CircularProgress />
+        ) : (
+          <>
+            <CardsContainer comics={comics} name="comics"></CardsContainer>
+            <CardsContainer
+              characters={characters}
+              name="characters"
+            ></CardsContainer>
+            <CardsContainer events={events} name="events"></CardsContainer>
+            <CardsContainer series={series} name="series"></CardsContainer>
+          </>
+        )}
       </Container>
     </>
   );
