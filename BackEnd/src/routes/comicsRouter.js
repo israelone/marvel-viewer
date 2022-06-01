@@ -5,4 +5,6 @@ const comicsController = require("../controllers/comicsController");
 
 router.get("/", comicsController.getRandomComics);
 
+router.get("/:comicId", comicsController.getOneComic);
+
 module.exports = router;
