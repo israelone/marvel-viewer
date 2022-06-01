@@ -7,7 +7,6 @@ const url = "https://gateway.marvel.com:443/v1/public/stories?";
 const getRandomStories = async () => {
   const randomStories = [];
   const getRandomLettersFromAlphabet = () => {
-    console.log(String.fromCharCode(Math.random() * (122 - 97) + 97));
     return String.fromCharCode(Math.random() * (122 - 97) + 97);
   };
 
@@ -32,25 +31,7 @@ const getRandomStories = async () => {
         return err;
       });
   }
-  // await axios
-  //   .get(
-  //     url +
-  //       "&nameStartsWith=" +
-  //       getRandomLettersFromAlphabet() +
-  //       "&apikey=" +
-  //       process.env.API_KEY +
-  //       "&ts=" +
-  //       ts +
-  //       "&hash=" +
-  //       hash
-  //   )
-  //   .then((data) => {
-  //     randomStories.push(data.data.data.results);
-  //   })
-  //   .catch((err) => {
-  //     return err;
-  //   });
-  //   console.log(randomStories, "line 35");
+
   return randomStories;
 };
 

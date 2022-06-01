@@ -15,7 +15,7 @@ const getRandomSeries = async () => {
     await axios
       .get(
         url +
-          "&nameStartsWith=" +
+          "&titleStartsWith=" +
           getRandomLettersFromAlphabet() +
           "&apikey=" +
           process.env.API_KEY +
@@ -32,25 +32,7 @@ const getRandomSeries = async () => {
         return err;
       });
   }
-  // await axios
-  //   .get(
-  //     url +
-  //       "&nameStartsWith=" +
-  //       getRandomLettersFromAlphabet() +
-  //       "&apikey=" +
-  //       process.env.API_KEY +
-  //       "&ts=" +
-  //       ts +
-  //       "&hash=" +
-  //       hash
-  //   )
-  //   .then((data) => {
-  //     randomSeries.push(data.data.data.results);
-  //   })
-  //   .catch((err) => {
-  //     return err;
-  //   });
-  //   console.log(randomSeries, "line 35");
+
   return randomSeries;
 };
 
