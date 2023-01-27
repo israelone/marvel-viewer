@@ -1,13 +1,10 @@
 const axios = require("axios");
 const { hash, ts } = require("../url");
-const config = require("dotenv").config();
-
-const url = "https://gateway.marvel.com:443/v1/public/characters?";
+const url = "https://gateway.marvel.com:443/v1/public/characters";
 
 const getRandomCharacters = async () => {
   const randomCharacters = [];
   const getRandomLettersFromAlphabet = () => {
-    console.log(String.fromCharCode(Math.random() * (122 - 97) + 97));
     return String.fromCharCode(Math.random() * (122 - 97) + 97);
   };
 
@@ -15,6 +12,7 @@ const getRandomCharacters = async () => {
     await axios
       .get(
         url +
+          "?" +
           "&nameStartsWith=" +
           getRandomLettersFromAlphabet() +
           "&apikey=" +
@@ -34,28 +32,36 @@ const getRandomCharacters = async () => {
         return err;
       });
   }
-  // await axios
-  //   .get(
-  //     url +
-  //       "&nameStartsWith=" +
-  //       getRandomLettersFromAlphabet() +
-  //       "&apikey=" +
-  //       process.env.API_KEY +
-  //       "&ts=" +
-  //       ts +
-  //       "&hash=" +
-  //       hash
-  //   )
-  //   .then((data) => {
-  //     randomCharacters.push(data.data.data.results);
-  //   })
-  //   .catch((err) => {
-  //     return err;
-  //   });
-  //   console.log(randomCharacters, "line 35");
+
   return randomCharacters;
+};
+
+const getOneCharacter = async (characterId) => {
+  let character;
+  await axios
+    .get(
+      url +
+        "/" +
+        characterId +
+        "?" +
+        "&apikey=" +
+        process.env.API_KEY +
+        "&ts=" +
+        ts +
+        "&hash=" +
+        hash
+    )
+    .then((data) => {
+      let results = data.data.data.results;
+      character = results;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return character;
 };
 
 module.exports = {
   getRandomCharacters,
+  getOneCharacter,
 };
