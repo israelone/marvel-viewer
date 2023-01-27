@@ -2,7 +2,7 @@ const axios = require("axios");
 const { hash, ts } = require("../url");
 const config = require("dotenv").config();
 
-const url = "https://gateway.marvel.com:443/v1/public/stories?";
+const url = "https://gateway.marvel.com:443/v1/public/stories";
 
 const getRandomStories = async () => {
   const randomStories = [];
@@ -14,6 +14,7 @@ const getRandomStories = async () => {
     await axios
       .get(
         url +
+          "?" +
           "&nameStartsWith=" +
           getRandomLettersFromAlphabet() +
           "&apikey=" +
@@ -35,8 +36,33 @@ const getRandomStories = async () => {
   return randomStories;
 };
 
-getComicById = () => {};
+const getOneStory = async (storyId) => {
+  let story;
+  await axios
+    .get(
+      url +
+        "/" +
+        storyId +
+        "?" +
+        "&apikey=" +
+        process.env.API_KEY +
+        "&ts=" +
+        ts +
+        "&hash=" +
+        hash
+    )
+    .then((data) => {
+      let results = data.data.data.results;
+      story = results[0];
+    })
+    .catch((err) => {
+      return err;
+    });
+
+  return story;
+};
 
 module.exports = {
   getRandomStories,
+  getOneStory,
 };
