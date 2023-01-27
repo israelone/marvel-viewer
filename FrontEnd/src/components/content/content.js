@@ -4,7 +4,6 @@ import CardsContainer from "../card-container/cards-container";
 import axios from "axios";
 import { useEffect } from "react";
 import { CircularProgress } from "@mui/material";
-import { CommuteRounded } from "@mui/icons-material";
 
 const Container = styled.div`
   height: 100%;
@@ -27,58 +26,70 @@ const Content = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:3001/comics`).then((res) => {
-      console.log(res.data.data);
-      setComics([...res.data.data]);
+      let response = res.data.data;
+      setComics(response);
     });
   }, []);
 
+  // useEffect(() => {
+  //   console.log(myData);
+  //   setComics([...myData.data]);
+
+  //   // setComics(data.data);
+  // }, []);
+
   useEffect(() => {
     axios.get(`http://localhost:3001/characters`).then((res) => {
-      console.log(res.data.data);
-      setCharacters([...res.data.data]);
+      let response = res.data.data;
+      setCharacters(response);
     });
   }, []);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/events`).then((res) => {
-      console.log(res.data.data);
-      setEvents([...res.data.data]);
+      let response = res.data.data;
+      setEvents(response);
     });
   }, []);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/series`).then((res) => {
-      console.log(res.data.data);
-      setSeries([...res.data.data]);
+      let response = res.data.data;
+      setSeries(response);
     });
   }, []);
 
   // useEffect(() => {
   //   axios.get(`http://localhost:3001/stories`).then((res) => {
-  //     console.log(res.data.data);
-  //     setStories([...res.data.data]);
+  //     let response = res.data.data;
+  //     setStories(response);
   //   });
   // }, []);
 
   return (
     <>
       <Container>
-        {comics.length === 0 ||
-        series.length === 0 ||
-        events.length === 0 ||
-        characters.length === 0 ? (
-          <CircularProgress />
-        ) : (
-          <>
-            <CardsContainer comics={comics} name="comics"></CardsContainer>
-            <CardsContainer
-              characters={characters}
-              name="characters"
-            ></CardsContainer>
-            <CardsContainer events={events} name="events"></CardsContainer>
-            <CardsContainer series={series} name="series"></CardsContainer>
-          </>
-        )}
+        {
+          //    {comics.length === 0 ||
+
+          // series.length === 0 ||
+          // events.length === 0 ||
+          // characters.length === 0 ?
+
+          comics.length === 0 ? (
+            <CircularProgress />
+          ) : (
+            <>
+              <CardsContainer comics={comics} name="comics"></CardsContainer>
+              <CardsContainer
+                characters={characters}
+                name="characters"
+              ></CardsContainer>
+              <CardsContainer events={events} name="events"></CardsContainer>
+              <CardsContainer series={series} name="series"></CardsContainer>
+            </>
+          )
+        }
       </Container>
     </>
   );

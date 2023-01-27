@@ -8,11 +8,11 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 export default function ImageDisplay(props) {
   const [items, setImages] = useState(props.items);
   const [urls, setUrls] = useState([]);
+
   useEffect(() => {
     let result = [];
     items.map((item) => {
       let id = item.resourceURI.split("/");
-      console.log(id);
       axios
         .get(`http://localhost:3001/comics/` + id[id.length - 1])
         .then((res) => {
@@ -21,11 +21,10 @@ export default function ImageDisplay(props) {
               "/portrait_uncanny." +
               res.data.data[0].thumbnail.extension
           );
-          console.log(result);
         });
     });
     setUrls(result);
-  });
+  }, []);
 
   return (
     <Box
@@ -40,7 +39,6 @@ export default function ImageDisplay(props) {
     >
       <ImageList variant="masonry" cols={3} gap={8}>
         {urls.map(async (url) => {
-          console.log(urls);
           return (
             <ImageListItem key={1}>
               <img
