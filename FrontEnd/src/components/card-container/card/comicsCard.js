@@ -4,9 +4,15 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import ModalContent from "../../modal/modalContent";
+import Modal from "@mui/material/Modal";
 
 export default function ActionAreaCard(props) {
-  console.log(props);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const item = React.useRef(props.item);
+
   return (
     <Card
       sx={{
@@ -16,7 +22,7 @@ export default function ActionAreaCard(props) {
         marginTop: "20px",
       }}
     >
-      <CardActionArea>
+      <CardActionArea onClick={handleOpen}>
         <CardMedia
           component="img"
           height="500"
@@ -38,6 +44,17 @@ export default function ActionAreaCard(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        {/* <h3>{props.item}</h3> */}
+        <div>
+          <ModalContent item={props.item} />
+        </div>
+      </Modal>
     </Card>
   );
 }
