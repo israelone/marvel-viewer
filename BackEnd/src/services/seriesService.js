@@ -7,7 +7,6 @@ const url = "https://gateway.marvel.com:443/v1/public/series?";
 const getRandomSeries = async () => {
   const randomSeries = [];
   const getRandomLettersFromAlphabet = () => {
-    console.log(String.fromCharCode(Math.random() * (122 - 97) + 97));
     return String.fromCharCode(Math.random() * (122 - 97) + 97);
   };
 
