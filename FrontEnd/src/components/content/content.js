@@ -32,7 +32,6 @@ const Content = () => {
   }, []);
 
   // useEffect(() => {
-  //   console.log(myData);
   //   setComics([...myData.data]);
 
   //   // setComics(data.data);
@@ -69,27 +68,23 @@ const Content = () => {
   return (
     <>
       <Container>
-        {
-          //    {comics.length === 0 ||
-
-          // series.length === 0 ||
-          // events.length === 0 ||
-          // characters.length === 0 ?
-
-          comics.length === 0 ? (
-            <CircularProgress />
-          ) : (
-            <>
-              <CardsContainer comics={comics} name="comics"></CardsContainer>
-              <CardsContainer
-                characters={characters}
-                name="characters"
-              ></CardsContainer>
-              <CardsContainer events={events} name="events"></CardsContainer>
-              <CardsContainer series={series} name="series"></CardsContainer>
-            </>
-          )
-        }
+        {comics.length === 0 ||
+        series.length === 0 ||
+        events.length === 0 ||
+        characters.length === 0 ||
+        comics.length === 0 ? (
+          <CircularProgress />
+        ) : (
+          <>
+            <CardsContainer comics={comics} name="comics"></CardsContainer>
+            <CardsContainer
+              characters={characters}
+              name="characters"
+            ></CardsContainer>
+            <CardsContainer events={events} name="events"></CardsContainer>
+            <CardsContainer series={series} name="series"></CardsContainer>
+          </>
+        )}
       </Container>
     </>
   );

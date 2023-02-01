@@ -14,6 +14,8 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  height: 500,
+  overflowY: "scroll",
 };
 
 export default function BasicModal(prop) {

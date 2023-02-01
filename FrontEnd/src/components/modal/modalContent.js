@@ -7,9 +7,6 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Button from "@mui/material/Button";
 import ItemsList from "./itemsList";
-//TODO Break this component down into multiple components
-//TODO Add selection functionality so user can select between comics, events, stories, etc.
-//TODO Need to make an API with the comic ID to retrieve it from the database
 const style = {
   display: "flex",
   position: "absolute",
@@ -88,7 +85,8 @@ export default function ModalContent(props) {
             width: "50%",
             flexDirection: "row",
             flexWrap: "wrap",
-            height: "100%",
+            height: "500px",
+            overflowY: "scroll",
           }}
         >
           {mosaicDisplay ? (
@@ -119,45 +117,7 @@ export default function ModalContent(props) {
               })}
             </>
           )}
-          {/* <Button
-            variant="contained"
-            onClick={displayMosaic}
-            disabled={!mosaicDisplay}
-          >
-            Go Back
-          </Button> */}
         </Box>
-        {/* <Card
-          sx={{
-            maxWidth: 345,
-            display: "flex",
-          }}
-        >
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="500"
-              image={
-                props.item.thumbnail.path +
-                "/portrait_uncanny." +
-                props.item.thumbnail.extension
-              }
-              alt={props.item.title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {props.item.name}
-              </Typography>
-              {props.item.description && (
-                <Typography variant="body2" color="text.secondary">
-                  {props.item.description
-                    ? props.item.description
-                    : "No Description Available"}
-                </Typography>
-              )}
-            </CardContent>
-          </CardActionArea>
-        </Card> */}
       </Box>
     </>
   );

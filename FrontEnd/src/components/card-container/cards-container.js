@@ -26,6 +26,7 @@ const CardsContainer = (props) => {
       className="container"
       ref={container}
       id={"scroll"}
+      style={{ overflowY: "scroll" }}
       horizontal={false}
     >
       {Object.values(props)[0].map((item) => {

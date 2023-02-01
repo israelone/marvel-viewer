@@ -11,7 +11,6 @@ export default function ActionAreaCard(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const item = React.useRef(props.item);
 
   return (
     <Card
@@ -50,7 +49,6 @@ export default function ActionAreaCard(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        {/* <h3>{props.item}</h3> */}
         <div>
           <ModalContent item={props.item} />
         </div>

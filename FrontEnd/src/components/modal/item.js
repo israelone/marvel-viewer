@@ -44,10 +44,9 @@ export default function Item(props) {
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
               component="img"
-              height="fit-content"
               image={
                 data.thumbnail.path +
-                "/standard_fantastic." +
+                "/portrait_uncanny." +
                 data.thumbnail.extension
               }
               alt=""
