@@ -7,18 +7,11 @@ import { React, useRef, useEffect } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import ReactDOM from "react-dom";
 
-//TODO Fix wheel scroll for each of the containers
-
 const CardsContainer = (props) => {
-  //   let container = React.createRef();
-  // useEffect(() => {
-  //   ReactDOM.findDOMNode(this.container.current).scrollTo(0, 300);
-  // }, []);
   let container = useRef();
   useEffect(() => {
     ReactDOM.findDOMNode(container.current).scrollTo(0, 300);
   }, []);
-  //Temp fix maybe?
   if (!Object.keys(props)[0]) return null;
 
   return (

@@ -22,48 +22,28 @@ const Content = () => {
   const [characters, setCharacters] = useState([]);
   const [events, setEvents] = useState([]);
   const [series, setSeries] = useState([]);
-  // const [stories, setStories] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/comics`).then((res) => {
       let response = res.data.data;
       setComics(response);
     });
-  }, []);
 
-  // useEffect(() => {
-  //   setComics([...myData.data]);
-
-  //   // setComics(data.data);
-  // }, []);
-
-  useEffect(() => {
     axios.get(`http://localhost:3001/characters`).then((res) => {
       let response = res.data.data;
       setCharacters(response);
     });
-  }, []);
 
-  useEffect(() => {
     axios.get(`http://localhost:3001/events`).then((res) => {
       let response = res.data.data;
       setEvents(response);
     });
-  }, []);
 
-  useEffect(() => {
     axios.get(`http://localhost:3001/series`).then((res) => {
       let response = res.data.data;
       setSeries(response);
     });
   }, []);
-
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3001/stories`).then((res) => {
-  //     let response = res.data.data;
-  //     setStories(response);
-  //   });
-  // }, []);
 
   return (
     <>
@@ -73,7 +53,7 @@ const Content = () => {
         events.length === 0 ||
         characters.length === 0 ||
         comics.length === 0 ? (
-          <CircularProgress />
+          <CircularProgress size={80} thickness={10} />
         ) : (
           <>
             <CardsContainer comics={comics} name="comics"></CardsContainer>
